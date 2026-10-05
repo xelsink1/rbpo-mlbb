@@ -4,5 +4,6 @@
 
 - [Паспорт проекта](PROJECT.md)
 - [Требования безопасности](SECURITY_REQUIREMENTS.md)
+- [Модель угроз и архитектурный вид](THREAT_MODEL.md)
 - [Материалы курса](https://github.com/hse-rbpo-bachelor-2026/course)
 # rbpo-mlbb
