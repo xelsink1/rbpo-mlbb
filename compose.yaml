@@ -1,0 +1,30 @@
+name: wisedubs
+services:
+  api:
+    build: .
+    environment:
+      DB_PASSWORD: "${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in a local .env file}"
+    ports:
+      - target: 8080
+        published: "${API_PORT:-8080}"
+        host_ip: 127.0.0.1
+        protocol: tcp
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:17.11-bookworm@sha256:639ab7ceb90e13123085b741fb31ef493fba25463002f6da665352e7b534b652
+    environment:
+      POSTGRES_DB: wisedubs
+      POSTGRES_USER: wisedubs
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in a local .env file}"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "wisedubs", "-d", "wisedubs"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+      start_period: 10s
+volumes:
+  db-data:

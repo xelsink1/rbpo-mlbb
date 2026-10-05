@@ -1,0 +1,9 @@
+**
+!src/
+src/**
+!src/WiseDubs.Api/
+src/WiseDubs.Api/**
+!src/WiseDubs.Api/Program.cs
+!src/WiseDubs.Api/WiseDubs.Api.csproj
+!src/WiseDubs.Api/packages.lock.json
+!Dockerfile
